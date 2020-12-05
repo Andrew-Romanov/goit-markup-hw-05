@@ -15,6 +15,8 @@
   --main-dark-gray-color: #2F303A;
   --main-black-color: #000000;
   --main-nav-stroke-color: #ECECEC;
+  --timing: 1000ms;
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Общая стилизация */
@@ -26,7 +28,6 @@ body {
   font-size: 14px;
   line-height: 1.71;
   letter-spacing: 0.03em;
-  /* fill: var(--secondary-text-color); */
 }
 
 a {
@@ -87,6 +88,8 @@ h1, h2, h3, p {
 /* Логотип на светлом фоне */
 .logo .web-on-light {
   color: var(--accent-color);
+
+  transition: color var(--timing) var(--timing-function);
 }
 .logo:hover .web-on-light,
 .logo:focus .web-on-light {
@@ -94,6 +97,8 @@ h1, h2, h3, p {
 }
 .logo .studio-on-light {
   color: var(--main-black-color);
+
+  transition: color var(--timing) var(--timing-function);
 }
 .logo:hover .studio-on-light,
 .logo:focus .studio-on-light {
@@ -104,6 +109,8 @@ h1, h2, h3, p {
 /* Логотип на тёмном фоне */
 .logo .web-on-dark {
   color: var(--accent-color);
+
+  transition: color var(--timing) var(--timing-function);
 }
 .logo:hover .web-on-dark,
 .logo:focus .web-on-dark {
@@ -115,6 +122,8 @@ h1, h2, h3, p {
 .logo:hover .studio-on-dark,
 .logo:focus .studio-on-dark {
   color: var(--accent-color);
+
+  transition: color var(--timing) var(--timing-function);
 }
 
 /* Список без буллетов */
@@ -152,38 +161,54 @@ header {
 
 .site-links .link {
   display: block;
+  position: relative;
 
   padding-top: 32px;
   padding-bottom: 32px;
 
   color: var(--primary-text-color);
-  
+
   font-weight: 500;
   line-height: 1.14;
   letter-spacing: 0.02em;
+
+  transition: color var(--timing) var(--timing-function);
 }
 
 .site-links .item:not(:last-child) {
   margin-right: 50px;
 }
 
-.contacts-top svg {
-  margin-right: 10px;
-
-  fill: currentColor;
-}
-
 .site-links .link:hover,
 .site-links .link:focus,
 .site-links .link.current,
-.contacts-top a:hover,
-.contacts-top a:focus {
+.contacts-top .link:hover,
+.contacts-top .link:focus {
   color: var(--accent-color);
 }
 
 .site-links .link.current:hover,
 .site-links .link.current:focus {
-	color: var(--primary-text-color);
+  color: var(--primary-text-color);
+}
+
+.site-links .link.current::after {
+  content: "";
+  display: block;
+  position: absolute;
+
+  bottom: -1px;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+
+  background-color: var(--accent-color);
+
+  transition: background-color var(--timing) var(--timing-function);
+}
+
+.site-links .link.current:hover::after {
+  background-color: var(--primary-text-color);
 }
 
 .contacts-top {
@@ -202,10 +227,18 @@ header {
   font-weight: 500;
   line-height: 1.14;
   letter-spacing: 0.02em;
+
+  transition: color var(--timing) var(--timing-function);
 }
 
 .contacts-top .item:not(:last-child) {
   margin-right: 50px;
+}
+
+.contacts-top svg {
+  margin-right: 10px;
+
+  fill: currentColor;
 }
 
 /* Заставка */
@@ -256,6 +289,9 @@ header {
   line-height: 1.87;
   text-align: center;
   letter-spacing: 0.06em;
+
+  transition: color var(--timing) var(--timing-function),
+    background-color var(--timing) var(--timing-function);
 }
 
 .hero-button:hover,
@@ -392,6 +428,9 @@ header {
 
   fill: var(--clients-and-socials-color);
   background-color: var(--main-light-color);
+
+  transition: fill var(--timing) var(--timing-function),
+    background-color var(--timing) var(--timing-function);
 }
 
 .team .socials a:hover, 
@@ -399,18 +438,6 @@ header {
   fill: var(--main-light-color);
   background-color: var(--accent-color);
 }
-
-/* .footer .socials p {
-  margin-bottom: 20px;
-
-  color: var(--main-light-color);
-
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.14;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-} */
 
 /* Постоянные клиенты */
 
@@ -439,6 +466,9 @@ header {
   fill: var(--clients-and-socials-color);
   border: 1px solid var(--clients-and-socials-color);
   border-radius: 4px;
+
+  transition: fill var(--timing) var(--timing-function),
+    border var(--timing) var(--timing-function);
 }
 
 .clients .list a:hover,
@@ -479,6 +509,8 @@ header {
 
 .contacts-bottom a {
   color: var(--bottom-contacts-text-color);
+
+  transition: color var(--timing) var(--timing-function);
 }
 
 .contacts-bottom a:hover,
@@ -505,6 +537,8 @@ header {
 
   fill: var(--main-light-color);
   background-color: var(--main-light-color-transparent);
+
+  transition: background-color var(--timing) var(--timing-function);
 }
 
 .footer .socials a:hover, 
@@ -561,10 +595,15 @@ header {
   text-align: center;
   letter-spacing: 0.03em;
 
+  padding: 0px 22px;
+
   color: var(--primary-text-color);
   background-color: var(--main-light-gray-color);
+  cursor: pointer;
 
-  padding: 0px 22px;
+  transition: color var(--timing) var(--timing-function),
+    background-color var(--timing) var(--timing-function),
+    box-shadow var(--timing) var(--timing-function);
 }
 
 .content-selector button:hover,
@@ -589,6 +628,10 @@ header {
   margin-bottom: 30px;
 
   background-color: var(--main-light-color);
+}
+
+.projects.list .project a {
+  transition: box-shadow var(--timing) var(--timing-function);
 }
 
 .projects.list .project a:hover,
