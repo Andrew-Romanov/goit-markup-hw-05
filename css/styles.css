@@ -5,6 +5,7 @@
   --bottom-contacts-text-color: rgba(255, 255, 255, 0.6);
   --accent-color: #2196F3;
   --accent-color-trasparent: #2196F399;
+  --accent-color-trasparent-2: #2196F3E6;
   --hero-background-color: #C4C4C4;
   --hero-overlay-color: rgba(47, 48, 58, 0.4);
   --our-works-overlay-color: rgba(47, 48, 58, 0.8);
@@ -682,17 +683,53 @@ header {
   padding: 20px 24px;
 }
 
+.projects.list .thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.projects.list .overlay {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--accent-color-trasparent-2);
+
+  transform: translateY(100%);
+  transition: transform var(--timing) var(--timing-function);
+}
+
+.projects.list a:hover .overlay {
+  transform: translateY(0%);
+}
+
+.projects.list .overlay p {
+  font-size: 18px;
+  line-height: 1.56;
+
+  margin-left: 24px;
+  margin-right: 24px;
+
+  color: var(--main-light-color);
+}
+
 .project-content h2 {
-  color: var(--primary-text-color);
   font-weight: 700;
   font-size: 18px;
   line-height: 2;
   letter-spacing: 0.06em;
   margin-bottom: 4px;
+
+  color: var(--primary-text-color);
 }
 
 .project-content p {
-  color: var(--secondary-text-color);
   font-size: 16px;
   line-height: 2;
+
+  color: var(--secondary-text-color);
 }
