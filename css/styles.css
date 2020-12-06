@@ -17,6 +17,8 @@
   --main-dark-gray-color: #2F303A;
   --main-black-color: #000000;
   --main-nav-stroke-color: #ECECEC;
+  --backdrop-black-color: #00000033;
+  --modal-close-button-border-color: #0000001A;
   --timing: 250ms;
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -278,12 +280,9 @@ header {
   display: inline-block;
 
   min-width: 200px;
+  border: 0px;
   border-radius: 4px;
   padding: 10px 34px;
-
-  color: var(--main-light-color);
-  background-color: var(--accent-color);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 
   text-align: center;
   font-weight: 700;
@@ -291,6 +290,10 @@ header {
   line-height: 1.87;
   text-align: center;
   letter-spacing: 0.06em;
+
+  color: var(--main-light-color);
+  background-color: var(--accent-color);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 
   transition: color var(--timing) var(--timing-function),
     background-color var(--timing) var(--timing-function);
@@ -585,6 +588,69 @@ header {
   text-transform: uppercase;
 }
 
+/* Модальное окно */
+.backdrop {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--backdrop-black-color);
+  opacity: 1;
+  transition: opacity var(--timing) var(--timing-function);
+}
+
+.backdrop.is-hidden {
+  pointer-events: none;
+
+  opacity: 0;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(50%);
+  opacity: 0;
+  transition: transform var(--timing) var(--timing-function),
+    opacity var(--timing) var(--timing-function);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(100%);
+
+  width: 528px;
+  height: 581px;
+  border-radius: 4px;
+
+  background-color: var(--main-light-color);
+  opacity: 1;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 
+    0px 1px 1px rgba(0, 0, 0, 0.14), 
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.modal button {
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+
+  fill: var(--main-black-color);
+  background-color: var(--main-light-color);
+  border: 1px solid var(--modal-close-button-border-color);
+  transition: fill var(--timing) var(--timing-function);
+}
+
+.modal button:hover,
+.modal button:focus {
+  fill: var(--accent-color);
+}
+
 /* Портфолио */
 .portfolio h1 {
   color: var(--main-black-color);
@@ -613,9 +679,11 @@ header {
 
 .content-selector button {
   display: block;
+
   height: 38px;
   border: 0px;
   border-radius: 4px;
+
   font-weight: 500;
   font-size: 16px;
   line-height: 1.625;
