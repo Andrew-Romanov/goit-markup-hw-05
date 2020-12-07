@@ -608,7 +608,7 @@ header {
 }
 
 .backdrop.is-hidden .modal {
-  transform: translate(-50%, -50%) scale(50%);
+  transform: translate(-50%, -50%) scale(0.5);
   opacity: 0;
   transition: transform var(--timing) var(--timing-function),
     opacity var(--timing) var(--timing-function);
@@ -618,7 +618,7 @@ header {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(100%);
+  transform: translate(-50%, -50%) scale(1);
 
   width: 528px;
   height: 581px;
@@ -633,6 +633,9 @@ header {
 
 .modal button {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   top: 8px;
   right: 8px;
